@@ -4,6 +4,7 @@ from PySide.QtGui import QPushButton
 from PySide.QtGui import QHBoxLayout
 from PySide.QtGui import QTreeWidget
 from PySide.QtGui import QTreeWidgetItem
+from PySide.QtGui import QTabWidget
 from pages import HtmlFavoritePage
 
 class MainView(QDialog):
@@ -13,7 +14,9 @@ class MainView(QDialog):
         
         # Create widgets
         self.edit = QTreeWidget()
-        self.button = QPushButton("Show Greetings")
+        self.button = QTabWidget()
+        self.button.addTab(HtmlFavoritePage(self.button), 'foo')
+        self.button.addTab(HtmlFavoritePage(self.button), 'bar')
         
         # Create layout and add widgets
         layout = QHBoxLayout()

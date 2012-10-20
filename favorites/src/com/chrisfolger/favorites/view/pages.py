@@ -1,6 +1,6 @@
-import wx
+from PySide.QtGui import QDialog
 
-class HtmlFavoritePage(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        wx.StaticText(self, -1, "This is a PageThree object", (60, 60))
+class HtmlFavoritePage(QDialog):
+    def __init__(self, parent=None):
+        super(HtmlFavoritePage, self).__init__(parent)
+        self.setWindowTitle("My Form")
