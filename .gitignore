@@ -4,3 +4,4 @@ dist
 .project
 .pydevproject
 *.pyc
+*.user
