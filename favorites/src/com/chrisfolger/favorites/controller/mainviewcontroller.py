@@ -50,6 +50,10 @@ def add_child(node):
     favorite.parent = node     
     return favorite
 
-def save(node, newTitle=''):
+def save(node, newTitle='', page = None):
+    logger.info(__name__, 'save', node.to_string()) 
+    
     if not newTitle == '':
         repository.save_favorite(repositoryDirectory, node.getFullPath(), newTitle)
+    elif not page == None:
+        repository.save_favorite(repositoryDirectory, node.getFullPath(), page = page)

@@ -15,13 +15,20 @@ class Favorite:
             currentNode = currentNode.parent
         
         return path
+    
+    def add_html_page(self):
+        self.page = HtmlPage()
+        return self.page
+    
+    def to_string(self):
+        return self.name + ',' +  self.label + ',' + str(self.page)
+    
+class HtmlPage:
+    def __init__(self):
+        self.url = 'http://foo.com'
+        self.external = True
+        
+    
+    
             
-        
-class HtmlFavorite(Favorite):
-    def __init__(self):
-        self.link = ''
-        
-class TextFavorite(Favorite):
-    def __init__(self):
-        self.text = ''
         

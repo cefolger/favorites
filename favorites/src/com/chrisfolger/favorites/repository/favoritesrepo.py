@@ -44,8 +44,8 @@ class FavoritesRepository:
         # create the repository 
         return git.init_repo(directory)
         
-    def save_favorite(self, directory, name, title=None):
-        self.logger.info(__name__, 'save_favorite', directory, name, title)
+    def save_favorite(self, directory, name, title=None, page = None):
+        self.logger.info(__name__, 'save_favorite', directory, name)
         if not title == None:
             git.cd(directory + '/favorites/' + name)
             favorite = open('title', 'w+')
@@ -57,6 +57,8 @@ class FavoritesRepository:
                 self.logger.error(__name__, 'save_favorite', directory, title, errors)
                 return False
             return True
+        elif not page == None:
+            pass
         
     def sync(self, directory):
         self.logger.info(__name__, 'sync', directory)

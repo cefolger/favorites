@@ -11,6 +11,7 @@ class TreeView():
         self.tree = QTreeWidget()
         self.tree.addAction(QAction('Add nested favorite', self.tree, triggered=self.add_child))
         self.tree.addAction(QAction('Edit Title', self.tree, triggered=self.edit_title))
+        self.tree.addAction(QAction('New HTML page', self.tree, triggered=self.create_html_page))
         self.tree.setContextMenuPolicy(Qt.ActionsContextMenu)
         targetLayoutContainer.addWidget(self.tree)
         
@@ -45,6 +46,11 @@ class TreeView():
         item.label = newTitle
         save(item, newTitle)
         self.tree.currentItem().setText(0, item.label)
+    
+    def create_html_page(self):
+        item = self.get_item(self.tree.currentItem())
+        page = item.add_html_page()
+        save(item, page=page)
     
     def add_children(self, node, item):
         for child in node.children:
