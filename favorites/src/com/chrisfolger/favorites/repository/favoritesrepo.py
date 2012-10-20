@@ -54,6 +54,18 @@ class FavoritesRepository:
                 return False
             return True
         
+    def sync(self, directory):
+        self.logger.info(__name__, 'sync', directory)
+        git.cd(directory)
+        if git.changesExist():
+            self.logger.warn(__name__, 'sync', 'changes detected, syncing')
+            git.add(' -u')
+            git.commit('committing repository state before loading favorites')
+            return True
+        self.logger.info(__name__, 'sync', 'no changes detected')
+        return False
+            
+        
     def add_favorite(self, directory,  name, title):
         self.logger.info(__name__, 'add_favorite', directory, title)
         git.cd(directory)

@@ -47,11 +47,14 @@ def makedir(dir):
 def status():
     return git('status')
 
+def changesExist():
+    return git('status --porcelain') != ('', '')
+
 def lg():
     return git('lg --all')
 
-def add():
-    return git('add .')
+def add(options = ''):
+    return git('add . ' + options)
 
 def commit(message):
     return git('commit -m "' + message + '"')

@@ -32,4 +32,6 @@ def new_repository(directory):
     
 def open_repository(directory):
     favorites = repository.get_favorites_root(directory)
+    repository.sync(directory)
+    #commit any changes on load 
     model.set_favorites(favorites)
