@@ -11,5 +11,9 @@ class Console():
     def __init__(self, targetLayoutContainer):
         self.textarea = QTextEdit()
         targetLayoutContainer.addWidget(self.textarea)
-    def info(self, *args):
-        print args
+        
+    def info(self, module, function, *args):
+        print module, function, args
+        
+        prettyString = '<font color="black"><b>', module, '</b><i>::', function, '</i> --> ', ''.join(args), '</font>'
+        self.textarea.append(''.join(prettyString))

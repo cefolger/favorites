@@ -6,7 +6,7 @@ class FavoritesRepository:
         self.logger = logger     
     
     def get_favorites_root(self):
-        self.logger.info(__name__, ' get_favorites_root: grabbing all favorites')
+        self.logger.info(__name__, ' get_favorites_root',' grabbing all favorites')
         
         favorite = Favorite('testing')
         favorite2 = Favorite('testing again dddd')
