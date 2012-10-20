@@ -7,6 +7,7 @@ from PySide.QtGui import QTreeWidget
 from PySide.QtGui import QTreeWidgetItem
 from PySide.QtGui import QTabWidget
 from pages import HtmlFavoritePage
+from console import Console
 
 class MainView(QDialog):
     def __init__(self, parent=None):
@@ -19,6 +20,7 @@ class MainView(QDialog):
         self.tabs = QTabWidget()
         self.tabs.addTab(HtmlFavoritePage(), 'foo')
         self.tabs.addTab(HtmlFavoritePage(), 'bar')
+        self.console = Console()
         
         container = QVBoxLayout()
         topContainer = QHBoxLayout()
@@ -28,7 +30,7 @@ class MainView(QDialog):
         container.addLayout(bottomContainer)
         topContainer.addWidget(self.tree)
         topContainer.addWidget(self.tabs)
-        
+        bottomContainer.addWidget(self.console)
         
         # Set dialog layout
         self.setLayout(container)
