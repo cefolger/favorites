@@ -2,6 +2,8 @@ from PySide.QtGui import QDialog
 from PySide.QtGui import QLineEdit
 from PySide.QtGui import QPushButton
 from PySide.QtGui import QHBoxLayout
+from PySide.QtGui import QTreeWidget
+from PySide.QtGui import QTreeWidgetItem
 from pages import HtmlFavoritePage
 
 class MainView(QDialog):
@@ -10,7 +12,10 @@ class MainView(QDialog):
         self.setWindowTitle("My Form")
         
         # Create widgets
-        self.edit = QLineEdit("Write my name here..")
+        self.edit = QTreeWidget()
+        item = QTreeWidgetItem()
+        item.setText(0, 'foo')
+        self.edit.addTopLevelItem(item)
         self.button = QPushButton("Show Greetings")
         
         # Create layout and add widgets
