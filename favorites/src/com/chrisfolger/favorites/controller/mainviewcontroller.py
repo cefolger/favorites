@@ -7,4 +7,4 @@ def start(mainviewModel):
     global model
     model = mainviewModel
     print 'hello'
-    model.setFavorites(repository.getFavoritesRoot())
+    model.set_favorites(repository.get_favorites_root())

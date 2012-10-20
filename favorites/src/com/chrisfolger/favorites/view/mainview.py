@@ -17,12 +17,12 @@ class MainView(wx.Frame):
         self.SetAutoLayout(True)
         self.Show(True)
     
-    def setFavorites(self, favoritesRoot):
+    def set_favorites(self, favoritesRoot):
         self.rootId = self.treeCtrl.AddRoot(favoritesRoot.label)
-        self.addChildren(favoritesRoot, self.rootId)
+        self.add_children(favoritesRoot, self.rootId)
     
-    def addChildren(self, node, parentId):
+    def add_children(self, node, parentId):
         for child in node.children:
             childId = self.treeCtrl.AppendItem(parentId, child.label)
-            self.addChildren(child, childId)
+            self.add_children(child, childId)
         
