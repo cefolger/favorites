@@ -13,9 +13,6 @@ class MainView(QDialog):
         
         # Create widgets
         self.edit = QTreeWidget()
-        item = QTreeWidgetItem()
-        item.setText(0, 'foo')
-        self.edit.addTopLevelItem(item)
         self.button = QPushButton("Show Greetings")
         
         # Create layout and add widgets
@@ -26,11 +23,15 @@ class MainView(QDialog):
         self.setLayout(layout)
 
     def set_favorites(self, favoritesRoot):
-        self.rootId = self.treeCtrl.AddRoot(favoritesRoot.label)
-        self.add_children(favoritesRoot, self.rootId)
+        item = QTreeWidgetItem()
+        item.setText(0, favoritesRoot.label)
+        self.edit.addTopLevelItem(item)
+        self.add_children(favoritesRoot, item)
     
-    def add_children(self, node, parentId):
+    def add_children(self, node, item):
         for child in node.children:
-            childId = self.treeCtrl.AppendItem(parentId, child.label)
-            self.add_children(child, childId)
-        
+            childItem = QTreeWidgetItem()
+            childItem.setText(0, child.label)
+            item.addChild(childItem)
+            
+            self.add_children(child, childItem)
