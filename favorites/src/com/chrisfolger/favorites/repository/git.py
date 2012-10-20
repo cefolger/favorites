@@ -58,3 +58,9 @@ def add(options = ''):
 
 def commit(message):
     return git(r'commit -m "' + message + '"')
+
+def get_commits():
+    output, errors = git('log --pretty=oneline --abbrev-commit')
+    print output
+    
+    return output

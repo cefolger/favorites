@@ -93,3 +93,7 @@ class FavoritesRepository:
         git.add()
         git.commit('added new favorite ' + name + ' with title ' + title)
         
+    def get_commits(self, directory):
+        self.logger.info(__name__, 'get_commits', directory)
+        git.cd(directory)
+        return git.get_commits().split('\n')

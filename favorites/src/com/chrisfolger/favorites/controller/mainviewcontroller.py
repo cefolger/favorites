@@ -39,6 +39,7 @@ def open_repository(directory):
     repository.sync(directory)
     #commit any changes on load 
     model.set_favorites(favorites)
+    print repository.get_commits(directory)
     
 def add_child(node):
     name = str(random.randrange(100000))
@@ -57,3 +58,4 @@ def save(node, newTitle='', page = None):
         repository.save_favorite(repositoryDirectory, node.getFullPath(), newTitle)
     elif not page == None:
         repository.save_favorite(repositoryDirectory, node.getFullPath(), page = page)
+        
