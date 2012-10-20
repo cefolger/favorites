@@ -20,11 +20,11 @@ def git(command):
     return output, errors
     
 def cd(directory):
-    logger.info(__name__, 'cd', directory)
+    logger.color(__name__, 'cd', 'blue', directory)
     os.chdir(directory)
     
 def init_repo(directory):
-    logger.info(__name__, 'init_repo', directory)
+    logger.color(__name__, 'init_repo', 'blue', directory)
     cd(directory)
     output, errors = status()
     if(errors == repositoryDoesntExist):
@@ -40,7 +40,7 @@ def init_repo(directory):
     return False 
         
 def makedir(dir):
-    logger.info(__name__, 'makedir', dir)
+    logger.color(__name__, 'makedir', 'blue', dir)
     os.makedirs(dir)
     file = open(dir + '/blank', 'w+')
 

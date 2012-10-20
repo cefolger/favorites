@@ -60,6 +60,7 @@ class FavoritesRepository:
         if git.changesExist():
             self.logger.warn(__name__, 'sync', 'changes detected, syncing')
             git.add(' -u')
+            git.add()
             git.commit('committing repository state before loading favorites')
             return True
         self.logger.info(__name__, 'sync', 'no changes detected')

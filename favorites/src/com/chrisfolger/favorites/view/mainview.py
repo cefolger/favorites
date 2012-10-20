@@ -14,6 +14,7 @@ from PySide.QtGui import QWidget
 
 from pages import HtmlFavoritePage
 from console import Console
+from treeview import TreeView
 from controller.mainviewcontroller import new_repository
 from controller.mainviewcontroller import open_repository
 
@@ -32,7 +33,6 @@ class MainWindow(QMainWindow):
         openRepository.triggered.connect(self.open_repository)
         
         self.button = QPushButton('hello there')
-        self.tree = QTreeWidget()
         self.tabs = QTabWidget()
         self.tabs.addTab(HtmlFavoritePage(), 'foo')
         self.tabs.addTab(HtmlFavoritePage(), 'bar')
@@ -42,28 +42,17 @@ class MainWindow(QMainWindow):
         topContainer = QHBoxLayout()
         bottomContainer = QHBoxLayout()
         self.console = Console(bottomContainer)
+        self.tree = TreeView(topContainer)
 
         container.addLayout(menuContainer, 0)
         container.addLayout(topContainer, 5)
         container.addLayout(bottomContainer, 3)
-        topContainer.addWidget(self.tree)
         topContainer.addWidget(self.tabs)
         
         widget.setLayout(container)
     
     def set_favorites(self, favoritesRoot):
-        item = QTreeWidgetItem()
-        item.setText(0, favoritesRoot.label)
-        self.tree.addTopLevelItem(item)
-        self.add_children(favoritesRoot, item)
-    
-    def add_children(self, node, item):
-        for child in node.children:
-            childItem = QTreeWidgetItem()
-            childItem.setText(0, child.label)
-            item.addChild(childItem)
-            
-            self.add_children(child, childItem)
+        self.tree.set_favorites(favoritesRoot)
             
     def get_logger(self):
         return self.console
