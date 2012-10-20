@@ -16,7 +16,7 @@ def git(command):
     args.insert(0, 'git')
     p = Popen(args, stdout=PIPE, stderr=PIPE, bufsize=256*1024*1024)
     output, errors = p.communicate()
-    logger.info(__name__, ' '.join(args), output, errors)
+    logger.color(__name__, ' '.join(args), 'blue', output, errors)
     return output, errors
     
 def cd(directory):

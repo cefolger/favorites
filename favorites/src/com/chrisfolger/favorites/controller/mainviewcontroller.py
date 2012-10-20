@@ -26,9 +26,7 @@ def new_repository(directory):
     # add an example favorite 
     repository.add_favorite(directory, 'example', 'the title of the example')
     repository.save_favorite(directory, 'example', 'a new title')
-    # load the favorites from it
-    favorites = repository.get_favorites_root(directory)
-    model.set_favorites(favorites)
+    open_repository(directory)
     
 def open_repository(directory):
     favorites = repository.get_favorites_root(directory)
