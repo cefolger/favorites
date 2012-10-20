@@ -5,6 +5,7 @@ class Favorite:
         self.children = []
         self.tags = []
         self.parent = None
+        self.page = None
     
     def getFullPath(self):
         currentNode = self.parent
@@ -23,10 +24,17 @@ class Favorite:
     def to_string(self):
         return self.name + ',' +  self.label + ',' + str(self.page)
     
+    def get_page(self):
+        return self.page
+    
 class HtmlPage:
     def __init__(self):
         self.url = 'http://foo.com'
         self.external = True
+    def serialize(self):
+        return self.url
+    def description(self):
+        return self.url
         
     
     
