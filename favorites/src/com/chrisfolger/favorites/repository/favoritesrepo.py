@@ -22,7 +22,9 @@ class FavoritesRepository:
         favorite = self.get_favorite_from_directory(favoritesDirectory + '/' + rootFavoriteEntry, rootFavoriteEntry)
        
         for child in [name for name in os.listdir(favoritesDirectory + '/' + rootFavoriteEntry) if os.path.isdir(os.path.join(favoritesDirectory + '/' + rootFavoriteEntry, name))]:
-            favorite.children.append(self.get_favorites_children(os.path.join(favoritesDirectory + '/' + rootFavoriteEntry, child), child))
+            childFavorite = self.get_favorites_children(os.path.join(favoritesDirectory + '/' + rootFavoriteEntry, child), child)
+            childFavorite.parent = favorite
+            favorite.children.append(childFavorite)
        
         return favorite
     
@@ -32,7 +34,9 @@ class FavoritesRepository:
         favorite = self.get_favorite_from_directory(currentNodeDirectory, name)
         
         for child in [name for name in os.listdir(currentNodeDirectory) if os.path.isdir(os.path.join(currentNodeDirectory, name))]:
-            favorite.children.append(self.get_favorites_children(os.path.join(currentNodeDirectory, child), child))
+            childFavorite = self.get_favorites_children(os.path.join(currentNodeDirectory, child), child)
+            childFavorite.parent = favorite 
+            favorite.children.append(childFavorite)
         
         return favorite
     
@@ -67,11 +71,11 @@ class FavoritesRepository:
         return False
             
         
-    def add_favorite(self, directory,  name, title):
+    def add_favorite(self, directory,  name, title, existing=''):
         self.logger.info(__name__, 'add_favorite', directory, title)
         git.cd(directory)
-        git.makedir(directory + '/favorites/' + name)
-        favorite = open(directory + '/favorites/' + name + '/title', 'w+')
+        git.makedir(directory + '/favorites/' + existing + name)
+        favorite = open(directory + '/favorites/' + existing + name + '/title', 'w+')
         favorite.write(title)
         favorite.close()
         git.add()

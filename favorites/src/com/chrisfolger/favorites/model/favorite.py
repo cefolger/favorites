@@ -4,6 +4,18 @@ class Favorite:
         self.name = name
         self.children = []
         self.tags = []
+        self.parent = None
+    
+    def getFullPath(self):
+        currentNode = self.parent
+        path = self.name
+        
+        while(currentNode != None):
+            path = currentNode.name + '/' + path
+            currentNode = currentNode.parent
+        
+        return path
+            
         
 class HtmlFavorite(Favorite):
     def __init__(self):

@@ -5,6 +5,7 @@ from repository.git import set_logger
 model = None
 repository = None 
 logger = None
+repositoryDirectory = ''
 
 def start(mainviewModel):
     global model
@@ -29,7 +30,13 @@ def new_repository(directory):
     open_repository(directory)
     
 def open_repository(directory):
+    global repositoryDirectory
+    repositoryDirectory = directory
+    
     favorites = repository.get_favorites_root(directory)
     repository.sync(directory)
     #commit any changes on load 
     model.set_favorites(favorites)
+    
+def add_child(node):
+    repository.add_favorite(repositoryDirectory,'test', 'atitle',  node.getFullPath() + '/')
