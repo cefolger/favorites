@@ -29,10 +29,25 @@ def init_repo(directory):
     output, errors = status()
     if(errors == repositoryDoesntExist):
         # good to go, create the repository
-        return git('init')
+        # after creation, create the folder
+        git('init')
+        makedir('favorites')
+        add()
+        commit('initial repo creation')
+        
+def makedir(dir):
+    logger.info(__name__, 'makedir', dir)
+    os.makedirs(dir)
+    file = open(dir + '/blank', 'w+')
 
 def status():
     return git('status')
 
 def lg():
     return git('lg --all')
+
+def add():
+    return git('add .')
+
+def commit(message):
+    return git('commit -m "' + message + '"')
