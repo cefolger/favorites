@@ -1,10 +1,24 @@
-from pages import HtmlFavoritePage
 from PySide.QtGui import QDialog
+from PySide.QtGui import QLineEdit
+from PySide.QtGui import QPushButton
+from PySide.QtGui import QHBoxLayout
+from pages import HtmlFavoritePage
 
 class MainView(QDialog):
     def __init__(self, parent=None):
         super(MainView, self).__init__(parent)
         self.setWindowTitle("My Form")
+        
+        # Create widgets
+        self.edit = QLineEdit("Write my name here..")
+        self.button = QPushButton("Show Greetings")
+        
+        # Create layout and add widgets
+        layout = QHBoxLayout()
+        layout.addWidget(self.edit)
+        layout.addWidget(self.button)
+        # Set dialog layout
+        self.setLayout(layout)
 
     def set_favorites(self, favoritesRoot):
         self.rootId = self.treeCtrl.AddRoot(favoritesRoot.label)
