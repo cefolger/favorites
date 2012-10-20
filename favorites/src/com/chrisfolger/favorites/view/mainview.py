@@ -21,17 +21,16 @@ class MainView(QDialog):
         self.tabs = QTabWidget()
         self.tabs.addTab(HtmlFavoritePage(), 'foo')
         self.tabs.addTab(HtmlFavoritePage(), 'bar')
-        self.console = Console()
         
         container = QVBoxLayout()
         topContainer = QHBoxLayout()
         bottomContainer = QHBoxLayout()
+        self.console = Console(bottomContainer)
         
-        container.addLayout(topContainer, 1)
-        container.addLayout(bottomContainer, 3)
+        container.addLayout(topContainer, 3)
+        container.addLayout(bottomContainer, 1)
         topContainer.addWidget(self.tree)
         topContainer.addWidget(self.tabs)
-        bottomContainer.addWidget(self.console)
         
         # Set dialog layout
         self.setLayout(container)
