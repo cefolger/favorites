@@ -11,12 +11,17 @@ def set_logger(loggerObject):
     global logger
     logger = loggerObject
 
-def git(command):
+def git(command, hideOutput = False):
     args = shlex.split(command.encode('ascii','ignore'))
     args.insert(0, 'git')
     p = Popen(args, stdout=PIPE, stderr=PIPE, bufsize=256*1024*1024)
     output, errors = p.communicate()
-    logger.color(__name__, ' '.join(args), 'blue', output, errors)
+    
+    if hideOutput:
+        logger.color(__name__, ' '.join(args), 'blue', ' (output hidden) ')
+    else:
+        logger.color(__name__, ' '.join(args), 'blue', output, errors)
+        
     return output, errors
     
 def cd(directory):
@@ -60,10 +65,13 @@ def commit(message):
     return git(r'commit -m "' + message + '"')
 
 def get_commits():
-    output, errors = git('log --pretty=oneline --abbrev-commit')
+    output, errors = git('log --pretty=oneline --abbrev-commit', True)
     print output
     
     return output
+
+def rm(directory):
+    return git('rm -r "' + directory + '"')
 
 def rollback(commit = None):
     if commit == None:

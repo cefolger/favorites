@@ -71,3 +71,7 @@ def rollback(commit = None):
     repository.rollback(repositoryDirectory, commit)
     open_repository(repositoryDirectory)
         
+def delete(node):
+    logger.clear()
+    repository.delete_node(repositoryDirectory, node.getFullPath())
+    logger.set_commits(repository.get_commits(repositoryDirectory))

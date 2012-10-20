@@ -98,6 +98,13 @@ class FavoritesRepository:
         git.cd(directory)
         return git.get_commits().split('\n')
     
+    def delete_node(self, directory, fullName):
+        self.logger.warn(__name__, 'delete_node', directory, fullName, ' (destructive)')
+        git.cd(directory + '/favorites')
+        git.rm(fullName)
+        git.add(' -u')
+        git.commit('deleted ' + fullName)
+    
     def rollback(self, directory, commit = None):
         git.cd(directory)
         git.rollback(commit)

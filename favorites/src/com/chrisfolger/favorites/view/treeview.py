@@ -2,9 +2,11 @@ from PySide.QtGui import QTreeWidget
 from PySide.QtGui import QTreeWidgetItem
 from PySide.QtGui import QAction
 from PySide.QtGui import QInputDialog
+from PySide.QtGui import QMessageBox
 from PySide.QtCore import Qt
 from controller.mainviewcontroller import add_child
 from controller.mainviewcontroller import save
+from controller.mainviewcontroller import delete
 
 class TreeView():
     def __init__(self, targetLayoutContainer):
@@ -12,6 +14,7 @@ class TreeView():
         self.tree.addAction(QAction('Add nested favorite', self.tree, triggered=self.add_child))
         self.tree.addAction(QAction('Edit Title', self.tree, triggered=self.edit_title))
         self.tree.addAction(QAction('New HTML page', self.tree, triggered=self.create_html_page))
+        self.tree.addAction(QAction('Delete', self.tree, triggered=self.delete))
         self.tree.setContextMenuPolicy(Qt.ActionsContextMenu)
         targetLayoutContainer.addWidget(self.tree)
         
@@ -62,4 +65,11 @@ class TreeView():
             item.addChild(childItem)
             
             self.add_children(child, childItem)
+            
+    def delete(self):
+        if(self.get_item(self.tree.currentItem()).parent == None):
+            QMessageBox.warning(None, 'cannot delete the root node', 'cannot delete the root node')
+            return
         
+        delete(self.get_item(self.tree.currentItem()))
+        self.tree.currentItem().parent().removeChild(self.tree.currentItem())
