@@ -52,7 +52,7 @@ class FavoritesRepository:
             favorite.write(title)
             favorite.close()
             git.add()
-            output, errors = git.commit("updated " + name + " with new title '" + title + "'")
+            output, errors = git.commit("updated " + name + " with new title " + title)
             if not errors == "":
                 self.logger.error(__name__, 'save_favorite', directory, title, errors)
                 return False

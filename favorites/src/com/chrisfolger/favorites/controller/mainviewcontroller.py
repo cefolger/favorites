@@ -49,3 +49,7 @@ def add_child(node):
     favorite = Favorite(title, name)
     favorite.parent = node     
     return favorite
+
+def save(node, newTitle=''):
+    if not newTitle == '':
+        repository.save_favorite(repositoryDirectory, node.getFullPath(), newTitle)

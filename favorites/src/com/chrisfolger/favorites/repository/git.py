@@ -12,7 +12,7 @@ def set_logger(loggerObject):
     logger = loggerObject
 
 def git(command):
-    args = shlex.split(command)
+    args = shlex.split(command.encode('ascii','ignore'))
     args.insert(0, 'git')
     p = Popen(args, stdout=PIPE, stderr=PIPE, bufsize=256*1024*1024)
     output, errors = p.communicate()
@@ -57,4 +57,4 @@ def add(options = ''):
     return git('add . ' + options)
 
 def commit(message):
-    return git('commit -m "' + message + '"')
+    return git(r'commit -m "' + message + '"')

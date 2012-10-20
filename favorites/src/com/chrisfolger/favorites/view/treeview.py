@@ -1,13 +1,16 @@
 from PySide.QtGui import QTreeWidget
 from PySide.QtGui import QTreeWidgetItem
 from PySide.QtGui import QAction
+from PySide.QtGui import QInputDialog
 from PySide.QtCore import Qt
 from controller.mainviewcontroller import add_child
+from controller.mainviewcontroller import save
 
 class TreeView():
     def __init__(self, targetLayoutContainer):
         self.tree = QTreeWidget()
         self.tree.addAction(QAction('Add nested favorite', self.tree, triggered=self.add_child))
+        self.tree.addAction(QAction('Edit Title', self.tree, triggered=self.edit_title))
         self.tree.setContextMenuPolicy(Qt.ActionsContextMenu)
         targetLayoutContainer.addWidget(self.tree)
         
@@ -21,6 +24,9 @@ class TreeView():
         newChildNode.setData(1, Qt.ItemDataRole.EditRole, newItem)
         item.addChild(newChildNode)
         
+    def get_item(self, node):
+        return node.data(1, Qt.ItemDataRole.EditRole)
+        
     def set_favorites(self, favoritesRoot):
         item = QTreeWidgetItem()
         item.setText(0, favoritesRoot.label)
@@ -28,6 +34,17 @@ class TreeView():
         
         self.tree.addTopLevelItem(item)
         self.add_children(favoritesRoot, item)
+    
+    def edit_title(self):
+        newTitle, result = QInputDialog.getText(None, 'new title', 'enter a new title')
+        
+        if not result:
+            return
+            
+        item = self.get_item(self.tree.currentItem())
+        item.label = newTitle
+        save(item, newTitle)
+        self.tree.currentItem().setText(0, item.label)
     
     def add_children(self, node, item):
         for child in node.children:
