@@ -43,3 +43,5 @@ class Console():
         for commit in commits:
             self.commits.addItem(commit)
             
+    def clear(self):
+        self.textarea.clear()

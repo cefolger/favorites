@@ -29,6 +29,8 @@ class TreeView():
         return node.data(1, Qt.ItemDataRole.EditRole)
         
     def set_favorites(self, favoritesRoot):
+        self.tree.clear()
+        
         item = QTreeWidgetItem()
         item.setText(0, favoritesRoot.label)
         item.setData(1,Qt.ItemDataRole.EditRole, favoritesRoot)

@@ -64,3 +64,6 @@ def get_commits():
     print output
     
     return output
+
+def rollback():
+    return git('reset --hard HEAD~1')

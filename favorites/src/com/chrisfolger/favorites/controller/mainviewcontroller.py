@@ -62,4 +62,9 @@ def save(node, newTitle='', page = None):
         repository.save_favorite(repositoryDirectory, node.getFullPath(), page = page)
         
     logger.set_commits(repository.get_commits(repositoryDirectory))
+    
+def rollback():
+    logger.clear()
+    repository.rollback(repositoryDirectory)
+    open_repository(repositoryDirectory)
         

@@ -97,3 +97,8 @@ class FavoritesRepository:
         self.logger.info(__name__, 'get_commits', directory)
         git.cd(directory)
         return git.get_commits().split('\n')
+    
+    def rollback(self, directory, commit = None):
+        if commit == None:
+            git.cd(directory)
+            git.rollback()
