@@ -14,7 +14,12 @@ class TreeView():
     def add_child(self):
         item = self.tree.currentItem()
         print item.data(1, Qt.ItemDataRole.EditRole).getFullPath()
-        add_child(item.data(1, Qt.ItemDataRole.EditRole))
+        newItem = add_child(item.data(1, Qt.ItemDataRole.EditRole))
+        
+        newChildNode = QTreeWidgetItem()
+        newChildNode.setText(0, newItem.label)
+        newChildNode.setData(1, Qt.ItemDataRole.EditRole, newItem)
+        item.addChild(newChildNode)
         
     def set_favorites(self, favoritesRoot):
         item = QTreeWidgetItem()

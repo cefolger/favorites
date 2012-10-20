@@ -1,6 +1,8 @@
 from repository.favoritesrepo import FavoritesRepository
 from repository.git import init_repo
 from repository.git import set_logger
+import random
+from model.favorite import Favorite
 
 model = None
 repository = None 
@@ -39,4 +41,11 @@ def open_repository(directory):
     model.set_favorites(favorites)
     
 def add_child(node):
-    repository.add_favorite(repositoryDirectory,'test', 'atitle',  node.getFullPath() + '/')
+    name = str(random.randrange(100000))
+    title = 'atitle'
+    
+    repository.add_favorite(repositoryDirectory, name, title,  node.getFullPath() + '/')
+
+    favorite = Favorite(title, name)
+    favorite.parent = node     
+    return favorite
