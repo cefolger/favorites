@@ -1,4 +1,4 @@
-from com.chrisfolger.favorites.repository.favoritesrepository import FavoritesRepository
+from repository.favoritesrepo import FavoritesRepository
 
 model = None
 repository = FavoritesRepository()

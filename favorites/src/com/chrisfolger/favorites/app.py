@@ -2,7 +2,7 @@ import sys
 from PySide.QtCore import *
 from PySide.QtGui import *
 from view.mainview import MainView
-from com.chrisfolger.favorites.controller.mainviewcontroller import start 
+from controller.mainviewcontroller import start 
  
  
 # Create a Qt application

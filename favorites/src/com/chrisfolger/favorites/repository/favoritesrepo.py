@@ -1,4 +1,4 @@
-from com.chrisfolger.favorites.model.favorite import Favorite
+from model.favorite import Favorite
 
 class FavoritesRepository:
     def __init__(self):
@@ -6,7 +6,7 @@ class FavoritesRepository:
     
     def get_favorites_root(self):
         favorite = Favorite('testing')
-        favorite2 = Favorite('testing again')
+        favorite2 = Favorite('testing again dddd')
         favorite3 = Favorite('testing still again')
         favorite.children.append(favorite2)
         favorite2.children.append(favorite3)
