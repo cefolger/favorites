@@ -18,7 +18,13 @@ def start(mainviewModel):
     repository = FavoritesRepository(logger)
 
 def new_repository(directory):
-    repository.new_repo(directory)
+    # create the repository 
+    result = repository.new_repo(directory)
+    if(not result):
+        logger.error(__name__, 'new_repository', 'repository was not created, stopping')
+        return
+    # add an example favorite 
+    repository.add_favorite(directory, 'example')
     # load the favorites from it
     favorites = repository.get_favorites_root(directory)
     model.set_favorites(favorites)

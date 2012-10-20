@@ -35,7 +35,9 @@ def init_repo(directory):
         makedir('favorites')
         add()
         commit('initial repo creation')
-    logger.info(__name__, 'init repo', 'repository present, ignoring')
+        return True
+    logger.warn(__name__, 'init repo', 'repository present, ignoring')
+    return False 
         
 def makedir(dir):
     logger.info(__name__, 'makedir', dir)

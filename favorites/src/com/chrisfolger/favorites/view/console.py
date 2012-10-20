@@ -17,3 +17,15 @@ class Console():
         
         prettyString = '<font color="black"><b>', module, '</b><i>::', function, '</i> --> ', ''.join(args), '</font>'
         self.textarea.append(''.join(prettyString))
+        
+    def error(self, module, function, *args):
+        print module, function, args
+        
+        prettyString = '<font color="red"><b>', module, '</b><i>::', function, '</i> --> ', ''.join(args), '</font>'
+        self.textarea.append(''.join(prettyString))
+        
+    def warn(self, module, function, *args):
+        print module, function, args
+        
+        prettyString = '<font color="#BE9900"><b>', module, '</b><i>::', function, '</i> --> ', ''.join(args), '</font>'
+        self.textarea.append(''.join(prettyString))
