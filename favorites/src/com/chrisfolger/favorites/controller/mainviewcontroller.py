@@ -24,7 +24,7 @@ def new_repository(directory):
         logger.error(__name__, 'new_repository', 'repository was not created, stopping')
         return
     # add an example favorite 
-    repository.add_favorite(directory, 'example')
+    repository.add_favorite(directory, 'example', 'the title of the example')
     # load the favorites from it
     favorites = repository.get_favorites_root(directory)
     model.set_favorites(favorites)

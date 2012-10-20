@@ -28,8 +28,12 @@ class FavoritesRepository:
         # create the repository 
         return git.init_repo(directory)
         
-    def add_favorite(self, directory,  title):
+    def add_favorite(self, directory,  name, title):
         self.logger.info(__name__, 'add_favorite', directory, title)
         git.cd(directory)
-        git.status()
-        
+        git.makedir(directory + '/favorites/' + name)
+        favorite = open(directory + '/favorites/' + name + '/title', 'w+')
+        favorite.write(title)
+        favorite.close()
+        git.add()
+        git.commit('added new favorite ' + name + ' with title ' + title)
