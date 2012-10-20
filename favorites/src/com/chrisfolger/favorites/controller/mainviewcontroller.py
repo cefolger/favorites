@@ -1,5 +1,4 @@
 from repository.favoritesrepo import FavoritesRepository
-from repository.git import init_repo
 from repository.git import set_logger
 import random
 from model.favorite import Favorite
@@ -42,6 +41,8 @@ def open_repository(directory):
     logger.set_commits(repository.get_commits(directory))
     
 def add_child(node):
+    logger.clear()
+    
     name = str(random.randrange(100000))
     title = 'atitle'
     
@@ -54,6 +55,8 @@ def add_child(node):
     return favorite
 
 def save(node, newTitle='', page = None):
+    logger.clear()
+    
     logger.info(__name__, 'save', node.to_string()) 
     
     if not newTitle == '':
@@ -63,8 +66,8 @@ def save(node, newTitle='', page = None):
         
     logger.set_commits(repository.get_commits(repositoryDirectory))
     
-def rollback():
+def rollback(commit = None):
     logger.clear()
-    repository.rollback(repositoryDirectory)
+    repository.rollback(repositoryDirectory, commit)
     open_repository(repositoryDirectory)
         

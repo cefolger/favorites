@@ -65,5 +65,8 @@ def get_commits():
     
     return output
 
-def rollback():
-    return git('reset --hard HEAD~1')
+def rollback(commit = None):
+    if commit == None:
+        return git('reset --hard HEAD~1')
+    else:
+        return git('reset --hard ' + commit)

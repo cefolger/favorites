@@ -1,11 +1,18 @@
 from PySide.QtGui import QTextEdit
 from PySide.QtGui import QListWidget
 from PySide.QtGui import QTabWidget
+from PySide.QtGui import QAction
+from PySide.QtGui import QMessageBox
+from PySide.QtCore import Qt
+from controller.mainviewcontroller import rollback
 
 class Console():
     def __init__(self, targetLayoutContainer):
         self.textarea = QTextEdit()
         self.commits = QListWidget()
+        
+        self.commits.addAction(QAction('Rollback to this revision', self.commits, triggered=self.rollback))
+        self.commits.setContextMenuPolicy(Qt.ActionsContextMenu)
         
         self.widget = QTabWidget()
         self.widget.addTab(self.textarea, 'Log')
@@ -45,3 +52,8 @@ class Console():
             
     def clear(self):
         self.textarea.clear()
+        
+    def rollback(self):
+        targetCommit = self.commits.currentItem().text().split(' ')[0]
+        if QMessageBox.warning(None, 'Rollback to commit?', 'All commits after ' + targetCommit + ' will be lost, proceed?', QMessageBox.Yes, QMessageBox.No) == QMessageBox.Yes:
+            rollback(targetCommit)
