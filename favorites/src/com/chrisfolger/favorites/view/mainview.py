@@ -2,30 +2,35 @@ from PySide.QtGui import QDialog
 from PySide.QtGui import QPushButton
 from PySide.QtGui import QHBoxLayout
 from PySide.QtGui import QVBoxLayout
+from PySide.QtGui import QMainWindow
 from PySide.QtGui import QTreeWidget
 from PySide.QtGui import QTreeWidgetItem
 from PySide.QtGui import QMenu
 from PySide.QtGui import QMenuBar
 from PySide.QtGui import QTabWidget
+from PySide.QtGui import QLayout
+from PySide.QtGui import QWidget
+
 from pages import HtmlFavoritePage
 from console import Console
 
-class MainView(QDialog):
-    def __init__(self, parent=None):
-        super(MainView, self).__init__(parent)
-        self.setWindowTitle("My Form")
+    
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
         
-        # Create widgets
+        widget = QWidget()
+        self.setCentralWidget(widget)
+
+        self.menuBar().addMenu('foo')
+        
         self.button = QPushButton('hello there')
         self.tree = QTreeWidget()
         self.tabs = QTabWidget()
         self.tabs.addTab(HtmlFavoritePage(), 'foo')
         self.tabs.addTab(HtmlFavoritePage(), 'bar')
-        self.menubar = QMenuBar(self)
-        self.menubar.addMenu('foo')
         
         container = QVBoxLayout()
-        
         menuContainer = QHBoxLayout()
         topContainer = QHBoxLayout()
         bottomContainer = QHBoxLayout()
@@ -37,9 +42,8 @@ class MainView(QDialog):
         topContainer.addWidget(self.tree)
         topContainer.addWidget(self.tabs)
         
-        # Set dialog layout
-        self.setLayout(container)
-
+        widget.setLayout(container)
+    
     def set_favorites(self, favoritesRoot):
         item = QTreeWidgetItem()
         item.setText(0, favoritesRoot.label)
