@@ -36,3 +36,10 @@ class Console():
         
         prettyString = '<font color="#BE9900"><b>', module, '</b><i>::', function, '</i> --> ', ''.join(args), '</font>'
         self.textarea.append(''.join(prettyString))
+        
+    def set_commits(self, commits):
+        self.commits.clear()
+        
+        for commit in commits:
+            self.commits.addItem(commit)
+            
