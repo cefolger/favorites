@@ -22,7 +22,9 @@ class MainWindow(QMainWindow):
         widget = QWidget()
         self.setCentralWidget(widget)
 
-        self.menuBar().addMenu('foo')
+        fileMenu = self.menuBar().addMenu('File')
+        newRepository = fileMenu.addAction('New Repository')
+        newRepository.triggered.connect(self.create_new_repository)
         
         self.button = QPushButton('hello there')
         self.tree = QTreeWidget()
@@ -60,3 +62,6 @@ class MainWindow(QMainWindow):
             
     def get_logger(self):
         return self.console
+    
+    def create_new_repository(self):
+        print 'new repository clicked'
