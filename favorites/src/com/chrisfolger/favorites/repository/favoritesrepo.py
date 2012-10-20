@@ -1,10 +1,13 @@
 from model.favorite import Favorite
 
 class FavoritesRepository:
-    def __init__(self):
-        self.dirty = False        
+    def __init__(self, logger):
+        self.dirty = False   
+        self.logger = logger     
     
     def get_favorites_root(self):
+        self.logger.info(__name__, ' get_favorites_root: grabbing all favorites')
+        
         favorite = Favorite('testing')
         favorite2 = Favorite('testing again dddd')
         favorite3 = Favorite('testing still again')

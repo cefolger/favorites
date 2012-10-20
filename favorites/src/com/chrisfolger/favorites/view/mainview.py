@@ -1,10 +1,8 @@
 from PySide.QtGui import QDialog
-from PySide.QtGui import QLineEdit
 from PySide.QtGui import QPushButton
 from PySide.QtGui import QHBoxLayout
 from PySide.QtGui import QVBoxLayout
 from PySide.QtGui import QTreeWidget
-from PySide.QtGui import QTextEdit
 from PySide.QtGui import QTreeWidgetItem
 from PySide.QtGui import QTabWidget
 from pages import HtmlFavoritePage
@@ -48,3 +46,6 @@ class MainView(QDialog):
             item.addChild(childItem)
             
             self.add_children(child, childItem)
+            
+    def get_logger(self):
+        return self.console

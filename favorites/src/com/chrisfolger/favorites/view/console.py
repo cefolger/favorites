@@ -10,5 +10,6 @@ from PySide.QtGui import QSizePolicy
 class Console():
     def __init__(self, targetLayoutContainer):
         self.textarea = QTextEdit()
-        
         targetLayoutContainer.addWidget(self.textarea)
+    def info(self, *args):
+        print args
