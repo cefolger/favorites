@@ -15,7 +15,6 @@ class FavoritesRepository:
         titleFile = open(favoritesDirectory + '/' + rootFavoriteEntry + '/title', 'r')
         title = titleFile.readline()
         titleFile.close()
-        
         favorite = Favorite(title)
        
         return favorite

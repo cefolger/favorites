@@ -15,6 +15,7 @@ from PySide.QtGui import QWidget
 from pages import HtmlFavoritePage
 from console import Console
 from controller.mainviewcontroller import new_repository
+from controller.mainviewcontroller import open_repository
 
     
 class MainWindow(QMainWindow):
@@ -26,7 +27,9 @@ class MainWindow(QMainWindow):
 
         fileMenu = self.menuBar().addMenu('File')
         newRepository = fileMenu.addAction('New Repository')
+        openRepository = fileMenu.addAction('Open Repository')
         newRepository.triggered.connect(self.create_new_repository)
+        openRepository.triggered.connect(self.open_repository)
         
         self.button = QPushButton('hello there')
         self.tree = QTreeWidget()
@@ -69,3 +72,8 @@ class MainWindow(QMainWindow):
         directory = QFileDialog.getExistingDirectory()
         new_repository(directory)
         self.currentRepository = directory 
+        
+    def open_repository(self):
+        directory = QFileDialog.getExistingDirectory()
+        open_repository(directory)
+        self.currentRepository = directory

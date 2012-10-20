@@ -29,3 +29,7 @@ def new_repository(directory):
     # load the favorites from it
     favorites = repository.get_favorites_root(directory)
     model.set_favorites(favorites)
+    
+def open_repository(directory):
+    favorites = repository.get_favorites_root(directory)
+    model.set_favorites(favorites)
