@@ -68,3 +68,4 @@ class MainWindow(QMainWindow):
     def create_new_repository(self):
         directory = QFileDialog.getExistingDirectory()
         new_repository(directory)
+        self.currentRepository = directory 

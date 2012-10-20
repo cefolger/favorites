@@ -1,12 +1,13 @@
 from model.favorite import Favorite
+import git
 
 class FavoritesRepository:
     def __init__(self, logger):
         self.dirty = False   
         self.logger = logger     
     
-    def get_favorites_root(self):
-        self.logger.info(__name__, ' get_favorites_root',' grabbing all favorites')
+    def get_favorites_root(self, path):
+        self.logger.info(__name__, ' get_favorites_root',' grabbing all favorites from ', path)
         
         favorite = Favorite('testing')
         favorite2 = Favorite('testing again dddd')
@@ -22,4 +23,8 @@ class FavoritesRepository:
     def flush(self):
         # flush to the git repository 
         self.dirty = False 
+        
+    def new_repo(self, directory):
+        # create the repository 
+        git.init_repo(directory)
         

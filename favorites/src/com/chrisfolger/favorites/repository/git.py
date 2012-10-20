@@ -30,10 +30,12 @@ def init_repo(directory):
     if(errors == repositoryDoesntExist):
         # good to go, create the repository
         # after creation, create the folder
+        logger.info(__name__, 'init repo', 'repository doesnt exist, creating it...')
         git('init')
         makedir('favorites')
         add()
         commit('initial repo creation')
+    logger.info(__name__, 'init repo', 'repository present, ignoring')
         
 def makedir(dir):
     logger.info(__name__, 'makedir', dir)

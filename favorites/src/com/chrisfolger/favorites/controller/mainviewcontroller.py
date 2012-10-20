@@ -16,7 +16,9 @@ def start(mainviewModel):
     set_logger(logger)
     
     repository = FavoritesRepository(logger)
-    model.set_favorites(repository.get_favorites_root())
 
 def new_repository(directory):
-    init_repo(directory)
+    repository.new_repo(directory)
+    # load the favorites from it
+    favorites = repository.get_favorites_root(directory)
+    model.set_favorites(favorites)
