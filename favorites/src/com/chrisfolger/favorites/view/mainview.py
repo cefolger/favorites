@@ -4,6 +4,7 @@ from PySide.QtGui import QPushButton
 from PySide.QtGui import QHBoxLayout
 from PySide.QtGui import QVBoxLayout
 from PySide.QtGui import QTreeWidget
+from PySide.QtGui import QTextEdit
 from PySide.QtGui import QTreeWidgetItem
 from PySide.QtGui import QTabWidget
 from pages import HtmlFavoritePage
@@ -20,14 +21,14 @@ class MainView(QDialog):
         self.tabs = QTabWidget()
         self.tabs.addTab(HtmlFavoritePage(), 'foo')
         self.tabs.addTab(HtmlFavoritePage(), 'bar')
-        self.console = Console()
+        self.console = QTextEdit()
         
         container = QVBoxLayout()
         topContainer = QHBoxLayout()
         bottomContainer = QHBoxLayout()
         
-        container.addLayout(topContainer)
-        container.addLayout(bottomContainer)
+        container.addLayout(topContainer, 1)
+        container.addLayout(bottomContainer, 1)
         topContainer.addWidget(self.tree)
         topContainer.addWidget(self.tabs)
         bottomContainer.addWidget(self.console)
