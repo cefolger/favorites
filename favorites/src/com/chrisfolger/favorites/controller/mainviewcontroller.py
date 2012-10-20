@@ -1,9 +1,10 @@
 from repository.favoritesrepo import FavoritesRepository
+from repository.git import init_repo
+from repository.git import set_logger
 
 model = None
 repository = None 
 logger = None
-
 
 def start(mainviewModel):
     global model
@@ -12,7 +13,10 @@ def start(mainviewModel):
      
     model = mainviewModel
     logger = model.get_logger()
-    print 'hello'
+    set_logger(logger)
     
     repository = FavoritesRepository(logger)
     model.set_favorites(repository.get_favorites_root())
+
+def new_repository(directory):
+    init_repo(directory)

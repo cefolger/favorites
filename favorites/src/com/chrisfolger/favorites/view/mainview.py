@@ -1,6 +1,7 @@
 from PySide.QtGui import QDialog
 from PySide.QtGui import QPushButton
 from PySide.QtGui import QHBoxLayout
+from PySide.QtGui import QFileDialog
 from PySide.QtGui import QVBoxLayout
 from PySide.QtGui import QMainWindow
 from PySide.QtGui import QTreeWidget
@@ -13,6 +14,7 @@ from PySide.QtGui import QWidget
 
 from pages import HtmlFavoritePage
 from console import Console
+from controller.mainviewcontroller import new_repository
 
     
 class MainWindow(QMainWindow):
@@ -64,4 +66,5 @@ class MainWindow(QMainWindow):
         return self.console
     
     def create_new_repository(self):
-        print 'new repository clicked'
+        directory = QFileDialog.getExistingDirectory()
+        new_repository(directory)
