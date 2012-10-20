@@ -1,0 +1,23 @@
+linear search 
+
+
+for i = 0, i < n, i ++
+	if object[i] == match 
+		return true
+return false
+
+
+
+arrayOfData(inputArray)
+  for i in inputArray
+
+  result = comparison(input(i), match)
+  if(result) {
+  	return true
+  }
+  
+  return false 
+  
+  
+  [1, 2, 3, 4]
+  [*, *, *, 4]
