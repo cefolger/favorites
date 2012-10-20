@@ -13,10 +13,11 @@ def set_logger(loggerObject):
     logger = loggerObject
 
 def git(command):
-    logger.info(__name__, 'git', command)
-    args = shlex.split('git '.join(command))
+    args = shlex.split(command)
+    args.insert(0, 'git')
     p = Popen(args, stdout=PIPE, stderr=PIPE, bufsize=256*1024*1024)
     output, errors = p.communicate()
+    logger.info(__name__, ' '.join(args), output)
     return output, errors
     
 def cd(directory):
@@ -26,10 +27,10 @@ def cd(directory):
 def init_repo(directory):
     cd(directory)
     status()
-    lg()
+    return lg()
 
 def status():
-    git('status')
+    return git('status')
 
 def lg():
-    print git('lg --all')
+    return git('lg --all')
