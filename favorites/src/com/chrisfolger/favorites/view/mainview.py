@@ -2,6 +2,7 @@ from PySide.QtGui import QDialog
 from PySide.QtGui import QLineEdit
 from PySide.QtGui import QPushButton
 from PySide.QtGui import QHBoxLayout
+from PySide.QtGui import QVBoxLayout
 from PySide.QtGui import QTreeWidget
 from PySide.QtGui import QTreeWidgetItem
 from PySide.QtGui import QTabWidget
@@ -13,22 +14,29 @@ class MainView(QDialog):
         self.setWindowTitle("My Form")
         
         # Create widgets
-        self.edit = QTreeWidget()
-        self.button = QTabWidget()
-        self.button.addTab(HtmlFavoritePage(self.button), 'foo')
-        self.button.addTab(HtmlFavoritePage(self.button), 'bar')
+        self.button = QPushButton('hello there')
+        self.tree = QTreeWidget()
+        self.tabs = QTabWidget()
+        self.tabs.addTab(HtmlFavoritePage(), 'foo')
+        self.tabs.addTab(HtmlFavoritePage(), 'bar')
         
-        # Create layout and add widgets
-        layout = QHBoxLayout()
-        layout.addWidget(self.edit)
-        layout.addWidget(self.button)
+        container = QVBoxLayout()
+        topContainer = QHBoxLayout()
+        bottomContainer = QHBoxLayout()
+        
+        container.addLayout(topContainer)
+        container.addLayout(bottomContainer)
+        topContainer.addWidget(self.tree)
+        topContainer.addWidget(self.tabs)
+        
+        
         # Set dialog layout
-        self.setLayout(layout)
+        self.setLayout(container)
 
     def set_favorites(self, favoritesRoot):
         item = QTreeWidgetItem()
         item.setText(0, favoritesRoot.label)
-        self.edit.addTopLevelItem(item)
+        self.tree.addTopLevelItem(item)
         self.add_children(favoritesRoot, item)
     
     def add_children(self, node, item):
