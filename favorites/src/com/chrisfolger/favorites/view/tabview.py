@@ -4,6 +4,7 @@ from PySide.QtGui import QTabWidget
 from PySide.QtGui import QAction
 from PySide.QtGui import QMessageBox
 from PySide.QtGui import QWidget
+from PySide.QtGui import QHBoxLayout
 from PySide.QtCore import Qt
 import pages
 
@@ -17,7 +18,12 @@ class TabView():
         
     def show_page(self, page):
         widget = QWidget()
-        pageWidget = pages.get_page_widget(page, widget)
+        
+        layout = QHBoxLayout()
+        widget.setLayout(layout)
+        
+        pageWidget = pages.get_page_widget(page, layout)
+        widget.show()
         self.tabs.addTab(widget, page.label)
         
         
