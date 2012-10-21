@@ -8,7 +8,8 @@ def get_page_widget(page, layout):
 class HtmlFavoritePage():
     def __init__(self, page, layout):
         self.page = page
-        label = QLabel(page.url)
+        label = QLabel('<a href="' + page.url + '">Click here to open the URL</a>')
+        label.setOpenExternalLinks(True)
         layout.addWidget(label)
         label.show()
   
