@@ -23,7 +23,7 @@ class TabView():
         widget.setLayout(layout)
         
         pageWidget = pages.get_page_widget(page, layout)
-        self.tabs.addTab(widget, page.label)
-        widget.show()
+        self.tabs.insertTab(0, widget, page.label)
+        self.tabs.setCurrentIndex(0)
         
         
