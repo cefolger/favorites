@@ -2,6 +2,7 @@ from repository.favoritesrepo import FavoritesRepository
 from repository.git import set_logger
 import random
 from model.favorite import Favorite
+import tabcontroller
 
 model = None
 repository = None 
@@ -17,6 +18,8 @@ def start(mainviewModel):
     logger = model.get_logger()
     set_logger(logger)
     
+    model.tabs.set_logger(logger)
+    tabcontroller.start(model.tabs)
     repository = FavoritesRepository(logger)
 
 def new_repository(directory):

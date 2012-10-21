@@ -9,4 +9,7 @@ class TabView():
     def __init__(self, targetLayoutContainer):
         self.tabs = QTabWidget()
         targetLayoutContainer.addWidget(self.tabs)
+    
+    def set_logger(self, logger):
+        self.logger = logger
         
