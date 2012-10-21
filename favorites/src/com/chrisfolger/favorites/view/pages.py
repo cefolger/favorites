@@ -1,6 +1,12 @@
-from PySide.QtGui import QDialog
+from PySide.QtGui import QWidget
 
-class HtmlFavoritePage(QDialog):
-    def __init__(self, parent=None):
-        super(HtmlFavoritePage, self).__init__(parent)
-        self.setWindowTitle("My Form")
+def get_page_widget(page):
+    if page.url:
+        return HtmlFavoritePage()
+
+class HtmlFavoritePage():
+    def __init__(self, targetLayoutContainer):
+        self.widget = QWidget()
+        targetLayoutContainer.addWidget(self.widget)
+        
+  

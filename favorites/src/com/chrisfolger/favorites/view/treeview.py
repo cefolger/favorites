@@ -7,6 +7,8 @@ from PySide.QtCore import Qt
 from controller.mainviewcontroller import add_child
 from controller.mainviewcontroller import save
 from controller.mainviewcontroller import delete
+import controller.mainviewcontroller as controller
+import pages
 
 class TreeView():
     def __init__(self, targetLayoutContainer):
@@ -56,6 +58,7 @@ class TreeView():
         item = self.get_item(self.tree.currentItem())
         page = item.add_html_page()
         save(item, page=page)
+        self.show_page(page)
     
     def add_children(self, node, item):
         for child in node.children:
@@ -73,3 +76,10 @@ class TreeView():
         
         delete(self.get_item(self.tree.currentItem()))
         self.tree.currentItem().parent().removeChild(self.tree.currentItem())
+        
+    def show_page(self, page=None):
+        if page == None:
+            controller.show_page(self.get_item(self.tree.currentItem()).page)
+        else:
+            controller.show_page(page)
+        

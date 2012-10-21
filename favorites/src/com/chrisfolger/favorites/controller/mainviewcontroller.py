@@ -75,3 +75,6 @@ def delete(node):
     logger.clear()
     repository.delete_node(repositoryDirectory, node.getFullPath())
     logger.set_commits(repository.get_commits(repositoryDirectory))
+    
+def show_page(page):
+    pass

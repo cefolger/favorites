@@ -16,6 +16,7 @@ from PySide.QtGui import QWidget
 from pages import HtmlFavoritePage
 from console import Console
 from treeview import TreeView
+from tabview import TabView
 from controller.mainviewcontroller import new_repository
 from controller.mainviewcontroller import open_repository
 from controller.mainviewcontroller import rollback
@@ -38,9 +39,6 @@ class MainWindow(QMainWindow):
         rollbackRepository.triggered.connect(self.discard_last_commit)
         
         self.button = QPushButton('hello there')
-        self.tabs = QTabWidget()
-        self.tabs.addTab(HtmlFavoritePage(), 'foo')
-        self.tabs.addTab(HtmlFavoritePage(), 'bar')
         
         container = QVBoxLayout()
         menuContainer = QHBoxLayout()
@@ -52,7 +50,7 @@ class MainWindow(QMainWindow):
         container.addLayout(menuContainer, 0)
         container.addLayout(topContainer, 5)
         container.addLayout(bottomContainer, 3)
-        topContainer.addWidget(self.tabs)
+        self.tabs = TabView(topContainer)
         
         widget.setLayout(container)
     
