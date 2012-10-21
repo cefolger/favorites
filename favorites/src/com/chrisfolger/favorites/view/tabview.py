@@ -18,6 +18,7 @@ class TabView():
         self.logger = logger
         
     def show_page(self, page):
+        print 'page is ' + page.item.name
         widget = QWidget()
         
         layout = QHBoxLayout()
@@ -30,5 +31,9 @@ class TabView():
     def save_page(self, page):
         self.logger.info(__name__, 'save_page', page.description())
         controller.save_page(page)
+        
+    def clear(self):
+        self.tabs.clear()
+        print 'cleared'
         
         

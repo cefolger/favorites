@@ -55,6 +55,7 @@ class MainWindow(QMainWindow):
         widget.setLayout(container)
     
     def set_favorites(self, favoritesRoot):
+        self.tabs.clear()
         self.tree.set_favorites(favoritesRoot)
             
     def get_logger(self):

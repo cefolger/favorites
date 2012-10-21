@@ -10,8 +10,20 @@ class FavoritesRepository:
         titleFile = open(directory + '/title', 'r')
         title = titleFile.readline()
         titleFile.close()
-        
         favorite = Favorite(title, name)
+        
+        if os.path.exists(directory + '/type'):
+            typeFile = open(directory + '/type', 'r')
+            pageType = typeFile.readline()
+            typeFile.close()
+            
+            pageFile = open(directory + '/page', 'r')
+            pageUrl = pageFile.readline()
+            pageFile.close()
+            
+            if pageType == 'html':
+                page = favorite.add_html_page(pageUrl)
+        
         return favorite
     
     def get_favorites_root(self, directory):

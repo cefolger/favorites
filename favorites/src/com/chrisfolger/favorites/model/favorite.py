@@ -17,8 +17,11 @@ class Favorite:
         
         return path
     
-    def add_html_page(self):
-        self.page = HtmlPage(self.label, self)
+    def add_html_page(self, url = 'http://foo.com'):
+        if self.page != None:
+            return self.page
+        
+        self.page = HtmlPage(self.label, self, url)
         return self.page
     
     def to_string(self):
@@ -28,8 +31,8 @@ class Favorite:
         return self.page
     
 class HtmlPage:
-    def __init__(self, label, item):
-        self.url = 'http://foo.com'
+    def __init__(self, label, item, url = 'http://foo.com'):
+        self.url = url
         self.external = True
         self.label = label
         self.item = item

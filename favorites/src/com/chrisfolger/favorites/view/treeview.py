@@ -15,7 +15,7 @@ class TreeView():
         self.tree = QTreeWidget()
         self.tree.addAction(QAction('Add nested favorite', self.tree, triggered=self.add_child))
         self.tree.addAction(QAction('Edit Title', self.tree, triggered=self.edit_title))
-        self.tree.addAction(QAction('New HTML page', self.tree, triggered=self.create_html_page))
+        self.tree.addAction(QAction('HTML page', self.tree, triggered=self.create_html_page))
         self.tree.addAction(QAction('Delete', self.tree, triggered=self.delete))
         self.tree.setContextMenuPolicy(Qt.ActionsContextMenu)
         targetLayoutContainer.addWidget(self.tree)
