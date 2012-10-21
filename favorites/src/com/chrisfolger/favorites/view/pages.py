@@ -4,6 +4,7 @@ from PySide.QtGui import QLineEdit
 from PySide.QtGui import QVBoxLayout
 from PySide.QtGui import QHBoxLayout
 from PySide.QtGui import QPushButton
+from PySide.QtWebKit import QWebView
 
 def get_page_widget(page, layout):
     if page.url:
@@ -20,11 +21,14 @@ class HtmlFavoritePage():
         actionsContainer.addWidget(QLabel('Link: '))
         actionsContainer.addWidget(QLineEdit(page.url))
         actionsContainer.addWidget(button)
-        label = QLabel('<a href="' + page.url + '">Open URL</a>')
+        label = QLabel('<a href="' + page.url + '">Open Externally</a>')
         label.setOpenExternalLinks(True)
         actionsContainer.addWidget(label)
         container.addLayout(actionsContainer)
         # content section 
+        view = QWebView()
+        view.setUrl(page.url)
+        container.addWidget(view)
         # properties section 
         
         layout.addLayout(container)
