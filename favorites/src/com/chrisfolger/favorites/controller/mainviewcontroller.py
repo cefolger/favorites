@@ -80,4 +80,4 @@ def delete(node):
     logger.set_commits(repository.get_commits(repositoryDirectory))
     
 def show_page(page):
-    pass
+    tabcontroller.show_page(page)

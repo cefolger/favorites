@@ -8,5 +8,4 @@ def start(tabview):
     logger = tabView.logger
 
 def show_page(page):
-    print 'show page'
-    pass
+    tabView.show_page(page)

@@ -1,12 +1,10 @@
 from PySide.QtGui import QWidget
 
-def get_page_widget(page):
+def get_page_widget(page, target):
     if page.url:
-        return HtmlFavoritePage()
+        return HtmlFavoritePage(target)
 
 class HtmlFavoritePage():
-    def __init__(self, targetLayoutContainer):
-        self.widget = QWidget()
-        targetLayoutContainer.addWidget(self.widget)
-        
+    def __init__(self, targetWidget):
+        pass
   

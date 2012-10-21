@@ -18,7 +18,7 @@ class Favorite:
         return path
     
     def add_html_page(self):
-        self.page = HtmlPage()
+        self.page = HtmlPage(self.label)
         return self.page
     
     def to_string(self):
@@ -28,9 +28,10 @@ class Favorite:
         return self.page
     
 class HtmlPage:
-    def __init__(self):
+    def __init__(self, label):
         self.url = 'http://foo.com'
         self.external = True
+        self.label = label
     def serialize(self):
         return self.url
     def description(self):
