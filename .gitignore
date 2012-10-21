@@ -5,3 +5,4 @@ dist
 .pydevproject
 *.pyc
 *.user
+*.autosave
