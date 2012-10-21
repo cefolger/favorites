@@ -63,6 +63,11 @@ class FavoritesRepository:
             favorite = open('page', 'w+')
             favorite.write(page.serialize())
             favorite.close()
+            
+            favorite = open('type', 'w+')
+            favorite.write(page.get_type())
+            favorite.close()
+            
             git.add()
             output, errors = git.commit("updated " + name + " with new page " + page.description())
             if not errors == "":

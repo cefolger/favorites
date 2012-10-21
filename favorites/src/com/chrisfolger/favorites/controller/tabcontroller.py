@@ -1,3 +1,5 @@
+import mainviewcontroller
+
 tabView = None
 logger = None
 
@@ -9,3 +11,6 @@ def start(tabview):
 
 def show_page(page):
     tabView.show_page(page)
+
+def save_page(page):
+    mainviewcontroller.save(page.item, page=page)

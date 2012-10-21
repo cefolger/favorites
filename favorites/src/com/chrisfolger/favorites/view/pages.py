@@ -7,18 +7,23 @@ from PySide.QtGui import QPushButton
 from PySide.QtGui import QMessageBox
 from PySide.QtWebKit import QWebView
 
-def get_page_widget(page, layout):
+def get_page_widget(page, layout, parent):
     if page.url:
-        return HtmlFavoritePage(page, layout)
+        return HtmlFavoritePage(page, layout, parent)
 
 # for some reason this doesn't get called when inside HtmlFavoritePage?
 def save_clicked(pageWidget):
+    if pageWidget.page.url == pageWidget.linkText.text():
+        return
+    
     pageWidget.page.url = pageWidget.linkText.text()
     pageWidget.view.setUrl(pageWidget.page.url)
+    pageWidget.parent.save_page(pageWidget.page)
 
 class HtmlFavoritePage():
-    def __init__(self, page, layout):
+    def __init__(self, page, layout, parent):
         self.page = page
+        self.parent = parent
         
         container = QVBoxLayout()
         # actions section

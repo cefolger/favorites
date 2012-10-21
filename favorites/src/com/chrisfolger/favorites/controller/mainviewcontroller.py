@@ -19,8 +19,8 @@ def start(mainviewModel):
     set_logger(logger)
     
     model.tabs.set_logger(logger)
-    tabcontroller.start(model.tabs)
     repository = FavoritesRepository(logger)
+    tabcontroller.start(model.tabs)
 
 def new_repository(directory):
     # create the repository 

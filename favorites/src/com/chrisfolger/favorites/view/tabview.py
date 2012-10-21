@@ -7,6 +7,7 @@ from PySide.QtGui import QWidget
 from PySide.QtGui import QHBoxLayout
 from PySide.QtCore import Qt
 import pages
+import controller.tabcontroller as controller
 
 class TabView():
     def __init__(self, targetLayoutContainer):
@@ -22,8 +23,12 @@ class TabView():
         layout = QHBoxLayout()
         widget.setLayout(layout)
         
-        pageWidget = pages.get_page_widget(page, layout)
+        pageWidget = pages.get_page_widget(page, layout, self)
         self.tabs.insertTab(0, widget, page.label)
         self.tabs.setCurrentIndex(0)
+        
+    def save_page(self, page):
+        self.logger.info(__name__, 'save_page', page.description())
+        controller.save_page(page)
         
         
