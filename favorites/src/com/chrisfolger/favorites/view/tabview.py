@@ -12,7 +12,7 @@ import controller.tabcontroller as controller
 class TabView():
     def __init__(self, targetLayoutContainer):
         self.tabs = QTabWidget()
-        targetLayoutContainer.addWidget(self.tabs)
+        targetLayoutContainer.addWidget(self.tabs, 10)
     
     def set_logger(self, logger):
         self.logger = logger

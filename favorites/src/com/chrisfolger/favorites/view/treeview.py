@@ -56,8 +56,15 @@ class TreeView():
     
     def create_html_page(self):
         item = self.get_item(self.tree.currentItem())
-        page = item.add_html_page()
-        save(item, page=page)
+        
+        page = None
+        
+        if item.page == None:
+            page = item.add_html_page()
+            save(item, page=page)
+        else:
+            page = item.add_html_page()
+        
         self.show_page(page)
     
     def add_children(self, node, item):
